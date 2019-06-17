@@ -75,12 +75,14 @@ with open(r'C:\Development\Machine Learning\PyTorch Learning\data\WISDM_ar_v1.1\
 
 thead = pd.read_csv("C:\\Development\\Machine Learning\\PyTorch Learning\\data\\WISDM_ar_v1.1\\WISDM_ar_v1.1_prep.csv", nrows=5) # just read in a few lines to get the column headers
 dtypes = dict(zip(thead.columns.values, ['int32', 'float32', 'float64', 'float32', 'float32', 'bool']))   # datatypes as given by the data page
-data = pd.read_csv("C:\\Development\\Machine Learning\\PyTorch Learning\\data\\WISDM_ar_v1.1\\WISDM_ar_v1.1_prep.csv", header=None, skiprows=0, nrows=5000, dtype=dtypes, names=column_names).dropna()
+#NOTE: Limited as my training device doesn't have high amounts of memory
+data = pd.read_csv("C:\\Development\\Machine Learning\\PyTorch Learning\\data\\WISDM_ar_v1.1\\WISDM_ar_v1.1_prep.csv", header=None, skiprows=0, nrows=100000, dtype=dtypes, names=column_names).dropna()
 
 data_convoluted = []
 labels = []
 
 # Slide a "SEGMENT_TIME_SIZE" wide window with a step size of "TIME_STEP"
+# Pre-processing code from https://github.com/bartkowiaktomasz/har-wisdm-lstm-rnns
 for i in range(0, len(data) - segment_time_size, time_step):
     x = data['x-axis'].values[i: i + segment_time_size]
     y = data['y-axis'].values[i: i + segment_time_size]
@@ -160,7 +162,7 @@ model = RNN(num_features, hidden_size, num_lstm_layers, num_classes).to(device)
 
 # Split data into training and validation sets
 
-X_train, X_test, y_train, y_test = train_test_split(data_convoluted, encoded_labels, test_size=0.3, random_state=seed)
+X_train, X_test, y_train, y_test = train_test_split(data_convoluted, encoded_labels, test_size=0.2, random_state=seed)
 print("X train size: ", len(X_train))
 print("X test size: ", len(X_test))
 print("y train size: ", len(y_train))
@@ -200,14 +202,6 @@ for epoch in range(num_epochs):
         if (i+1) % 5 == 0:
             print ('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}' 
                    .format(epoch+1, num_epochs, i+1, total_step, loss.item()))
-        
-    if epoch % 5 == 0:
-        print ('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}' 
-               .format(epoch+1, num_epochs, i+1, total_step, loss.item()))
-        
-# Save the model weights
-        
-torch.save(model.state_dict(), "./wisdm_weights")
     
 """
 SECTION
@@ -228,10 +222,15 @@ with torch.no_grad():
         labels = labels.to(device)
         
         # Forward pass
+        
         outputs = model(features)
         _, predicted = torch.max(outputs.data , 1)
         
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
         
-        print('Test Accuracy of the model on the images in the test_loader: {} %'.format(100 * correct / total)) 
+    print('Test Accuracy of the model on the data in the test_loader: {} %'.format(100 * correct / total))
+    
+    # Save the model weights with information in name
+    
+    torch.save(model.state_dict(), "./wisdm_weights/verif_" + str(round(100 * correct / total, 3)) + "acc")
