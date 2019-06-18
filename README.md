@@ -20,6 +20,7 @@ Each of the folders contains the code for creating a deep learning model for tha
  - Overall
 	 - [PyTorch Basics  - MorvanZhou](https://github.com/MorvanZhou/PyTorch-Tutorial)
 	 - [PyTorch Basics  - yunjey](https://github.com/MorvanZhou/PyTorch-Tutorial)
+	 - [Overview of loss functions](https://medium.com/udacity-pytorch-challengers/a-brief-overview-of-loss-functions-in-pytorch-c0ddb78068f7)
  - RNN (LSTM)
 	 - [Basics](https://github.com/keras-team/keras/issues/2654)
 	 - [LSTM Input](https://discuss.pytorch.org/t/understanding-lstm-input/31110)
