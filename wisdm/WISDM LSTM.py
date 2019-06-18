@@ -13,6 +13,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
 import torch
+import torch.utils.data
 import torch.nn as nn
 
 """
