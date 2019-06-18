@@ -1,0 +1,1 @@
+These pre-trained weights were only trained on a portion of the dataset and only validated on a portion of the dataset. (approx. 10000 rows) If you are trying to evaluate performance of the model, you will need to train your own weights.
