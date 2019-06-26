@@ -75,7 +75,7 @@ with open(r'C:\Development\Machine Learning\PyTorch Learning\data\WISDM_ar_v1.1\
             outfile.write(data)
 
 thead = pd.read_csv("C:\\Development\\Machine Learning\\PyTorch Learning\\data\\WISDM_ar_v1.1\\WISDM_ar_v1.1_prep.csv", nrows=5) # just read in a few lines to get the column headers
-dtypes = dict(zip(thead.columns.values, ['int32', 'float32', 'float64', 'float32', 'float32', 'bool']))   # datatypes as given by the data page
+dtypes = dict(zip(thead.columns.values, ['int32', 'float32', 'float64', 'float32', 'float32', 'float32']))   # datatypes as given by the data page
 #NOTE: Limited as my training device doesn't have high amounts of memory
 data = pd.read_csv("C:\\Development\\Machine Learning\\PyTorch Learning\\data\\WISDM_ar_v1.1\\WISDM_ar_v1.1_prep.csv", header=None, skiprows=0, nrows=100000, dtype=dtypes, names=column_names).dropna()
 
