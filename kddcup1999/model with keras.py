@@ -47,22 +47,23 @@ X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.15, random
 #print(y_train)
 
 def shallowModel():
-#initialize model
-model = Sequential()
-model.add(Dense(80, input_dim=40, activation="relu"))
-model.add(Dense(160, activation="relu"))
-model.add(Dropout(0.2))
-model.add(Dense(160, activation="relu"))
-model.add(Dropout(0.2))
-model.add(Dense(160, activation="relu"))
-model.add(Dropout(0.2))
-model.add(Dense(80, activation="relu"))
-model.add(Dropout(0.2))
-model.add(Dense(40, activation="relu"))
-model.add(Dense(20, activation="softmax"))
-#compile the model
-model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=['accuracy'])
-return model
+  #initialize model
+  model = Sequential()
+  model.add(Dense(80, input_dim=40, activation="relu"))
+  model.add(Dense(160, activation="relu"))
+  model.add(Dropout(0.2))
+  model.add(Dense(160, activation="relu"))
+  model.add(Dropout(0.2))
+  model.add(Dense(160, activation="relu"))
+  model.add(Dropout(0.2))
+  model.add(Dense(80, activation="relu"))
+  model.add(Dropout(0.2))
+  model.add(Dense(40, activation="relu"))
+  model.add(Dense(20, activation="softmax"))
+  #compile the model
+  model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=['accuracy'])
+  return model
+
 clf = KerasClassifier(build_fn=shallowModel, epochs=200, batch_size=16, verbose=2)
 
 kfold = KFold(n_splits=10, shuffle=True, random_state=seed)
