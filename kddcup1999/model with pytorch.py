@@ -109,7 +109,7 @@ class FeedForward(nn.Module):
         #Categorial features get their own embed layers which are concat at the end w/ cont features
         embedData = [emb_layer(x[:, cat_features[i]].long()) for i, emb_layer in enumerate(self.emb_layers)]
         embedData = torch.cat(embedData, 1)
-        embedData = self.emb_dropout_layer(x)
+        embedData = self.emb_dropout_layer(embedData)
         
         x = x[:, 4:] #TODO: Lost the leftmost data, next time split data into cont and cat when passing into model        
         out = self.first_bn(x)
