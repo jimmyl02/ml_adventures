@@ -11,18 +11,25 @@ Each of the folders contains the code for creating a deep learning model for tha
 
  - **kddcup1999** - A cybersecurity dataset which can be found [here](https://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html)
 	 - Feed-forward neural network with categorical and continuous features
-	  - Embedding layers utilized in PyTorch implementation and one-hot encoding used in Keras implementation
+	 - Embedding layers utilized in PyTorch implementation and one-hot encoding used in Keras implementation
  - **wisdm** - A human activity dataset which can be found [here](http://www.cis.fordham.edu/wisdm/dataset.php)
-	 - Recurrent neural network on time series [lstm]
-	 - Implements sliding window to group data into trainable information
-	 - Inspired by [Tomasz Bartkowiak's implementation](https://github.com/bartkowiaktomasz/har-wisdm-lstm-rnns)
+	- Recurrent neural network on time series [lstm]
+	- Implements sliding window to group data into trainable information
+	- Inspired by [Tomasz Bartkowiak's implementation](https://github.com/bartkowiaktomasz/har-wisdm-lstm-rnns)
+ - **annotated_transformer** - A re-implmentation of the transformer for language translation
+	 - Most of the code is from the [annotated transformer](http://nlp.seas.harvard.edu/2018/04/03/attention.html#positional-encoding) paper
+	 - Implements both the encoder and decoder stacks with additional comments
+	 - Integrates some of the illustrations from the [illustrated transformer](http://jalammar.github.io/illustrated-transformer/)
 ## Useful resources
  - Overall
-	 - [PyTorch Basics  - MorvanZhou](https://github.com/MorvanZhou/PyTorch-Tutorial)
-	 - [PyTorch Basics  - yunjey](https://github.com/yunjey/pytorch-tutorial)
-	 - [Overview of loss functions](https://medium.com/udacity-pytorch-challengers/a-brief-overview-of-loss-functions-in-pytorch-c0ddb78068f7)
-	 - [Save memory with pandas](https://www.kaggle.com/marcmuc/large-csv-datasets-with-pandas-use-less-memory)
+	- [PyTorch Basics  - MorvanZhou](https://github.com/MorvanZhou/PyTorch-Tutorial)
+	- [PyTorch Basics  - yunjey](https://github.com/yunjey/pytorch-tutorial)
+	- [Overview of loss functions](https://medium.com/udacity-pytorch-challengers/a-brief-overview-of-loss-functions-in-pytorch-c0ddb78068f7)
+	- [Save memory with pandas](https://www.kaggle.com/marcmuc/large-csv-datasets-with-pandas-use-less-memory)
  - RNN (LSTM)
-	 - [Basics](https://github.com/keras-team/keras/issues/2654)
-	 - [LSTM Input](https://discuss.pytorch.org/t/understanding-lstm-input/31110)
-	 - [Sliding window for time series](https://machinelearningmastery.com/time-series-forecasting-supervised-learning/)
+	- [Basics](https://github.com/keras-team/keras/issues/2654)
+	- [LSTM Input](https://discuss.pytorch.org/t/understanding-lstm-input/31110)
+	- [Sliding window for time series](https://machinelearningmastery.com/time-series-forecasting-supervised-learning/)
+ - Transformers
+ 	- [Annotated Transformer](http://nlp.seas.harvard.edu/2018/04/03/attention.html#positional-encoding)
+ 	- [Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/)
